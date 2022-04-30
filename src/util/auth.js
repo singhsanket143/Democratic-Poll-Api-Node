@@ -8,9 +8,9 @@ passport.use('signup', new localStrategy({
     usernameField: 'email',
     passwordField: 'password'
 },
-async (email, passowrd, done) => {
+async (email, password, done) => {
     try {
-        const user = await User.create({email, passowrd});
+        const user = await User.create({email, password});
         return done(null, user);
     } catch(err) {
         console.log(err);
@@ -27,6 +27,7 @@ passport.use('login', new localStrategy(
     async (email, password, done) => {
         try {
             const user = await User.findOne({email});
+            console.log(user);
             if(!user) {
                 return done(null, false, {message: 'User not found'});
             }
@@ -55,4 +56,4 @@ passport.use(new JWTStrategy(
             done(err);
         }
     }
-))
+));
