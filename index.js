@@ -21,5 +21,11 @@ app.listen(3000, async () => {
     await connect();
     console.log("Mongo db connected successfully");
     console.log("Server Started Successsfully");
+    // let user = await User.create({
+    //     email: "abc@xyz.com", 
+    //     password: 12345,
+    //     username: "ABC"
+    // });
+    // console.log(user);
 });
 
