@@ -1,6 +1,10 @@
 const express = require('express'); // this package returns a function using which we can initiate a new express application object
-const app = express(); // executing the function returned a new express application
 const apiRouter = require("./src/routes/index");
+const User = require('./src/models/user');
+const {connect} = require('./src/config/database');
+
+const app = express(); // executing the function returned a new express application
+
 app.use("/api", apiRouter);
 
 app.get('/', (req, res) => {
@@ -12,8 +16,10 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
     // this callback will be executed everytime the server starts
+    await connect();
+    console.log("Mongo db connected successfully");
     console.log("Server Started Successsfully");
 });
 
