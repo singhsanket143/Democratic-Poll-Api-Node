@@ -3,7 +3,11 @@ const Poll = require('../models/poll');
 
 const create = async (data) => {
     try {
-        const response = await new Poll(data).save();
+        const response = await Response.create({
+            user: data.user,
+            poll: data.poll,
+            selectedOption: data.option
+        });
         return response;
     } catch (err) {
         console.log(err);
